@@ -2,7 +2,7 @@ name: bloomberg_cron
 
 on:
   schedule:
-    - cron: '1 * * * *' # runs at 12:00 UTC everyday
+    - cron: '* * * * *' # runs at 12:00 UTC everyday
 
 jobs:
   build:
