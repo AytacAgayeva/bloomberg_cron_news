@@ -2,7 +2,7 @@ name: bloomberg_cron
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # runs at 12:00 UTC everyday
+    - cron: '*/1 * * * *' # runs at 12:00 UTC everyday
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECIPIENT: ${{ secrets.EMAIL_RECIPIENT }}
-        run: main.py
+        run: python main.py
           
       - name: commit files
         run: |
