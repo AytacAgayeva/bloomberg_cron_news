@@ -10,7 +10,8 @@ today=date.today()
 now = datetime.now()
 current_time = now.strftime("%H_%M")
 name=f"sitemap_news_{today}__{current_time}.xml"
-filename = wget.download(url,name)
+file_path=os.path.join("./xml",name)
+filename = wget.download(url,file_path)
 
 with open(filename, 'r',encoding='utf-8') as file:
     xml_content = file.read()
