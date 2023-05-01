@@ -11,9 +11,6 @@ now = datetime.now()
 current_time = now.strftime("%H_%M")
 name=f"sitemap_news_{today}__{current_time}.xml"
 filename = wget.download(url,name)
-with open(f"https://github.com/Aytage/bloomberg_cron_news/tree/main/data/") as fp:
-        pickle.dump(filename, fp)
-        fp.close()
 
 '''with open(filename, 'r',encoding='utf-8') as file:
     xml_content = file.read()
