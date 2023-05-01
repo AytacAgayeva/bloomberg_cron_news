@@ -15,7 +15,7 @@ filename = wget.download(url,name)
 with open(filename, 'r',encoding='utf-8') as file:
     xml_content = file.read()
     
-soup = BeautifulSoup(xml_content, 'xml')
+'''soup = BeautifulSoup(xml_content, 'xml')
 urls = soup.find_all("url")
 data = []
 for url in urls:
@@ -35,7 +35,7 @@ for url in urls:
         }
     data.append(row_data)    
 df = pd.DataFrame(data)
-'''path="https://github.com/Aytage/bloomberg_cron_news/tree/main/json"
+path="https://github.com/Aytage/bloomberg_cron_news/tree/main/json"
 df.to_json(os.path.join(path,f'sitemap_news_{today}__{current_time}.json'))
 
 data = [(pd.read_json(os.path.join(path, f)), f[-10:-5]) for f in os.listdir(path) if f.endswith(".json")]
