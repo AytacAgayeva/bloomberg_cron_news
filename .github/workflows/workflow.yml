@@ -20,7 +20,7 @@ jobs:
       - name: install python packages
         run: |
           python -m pip install --upgrade pip
-          pip install wget pandas bs4 requests pickle5 datetime
+          pip install wget pandas bs4 requests pickle5 datetime lxml
           
       - name: execute py script # run sj-gobierno.py to get the latest data
         env: 
