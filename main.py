@@ -16,7 +16,7 @@ filename = wget.download(url,file_path)
 with open(filename, 'r',encoding='utf-8') as file:
     xml_content = file.read()
     
-'''soup = BeautifulSoup(xml_content, 'xml')
+soup = BeautifulSoup(xml_content, 'xml')
 urls = soup.find_all("url")
 data = []
 for url in urls:
@@ -59,6 +59,6 @@ for d, t in data:
 all_news = pd.DataFrame({"Time": [d["Time"] for d in news_data], 
                           "NEW": [d["NEW"] for d in news_data], 
                           "SAME": [d["SAME"] for d in news_data], 
-                          "EXCLUDED": [d["EXCLUDED"] for d in news_data]})'''
+                          "EXCLUDED": [d["EXCLUDED"] for d in news_data]})
                           
 
