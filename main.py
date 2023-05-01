@@ -59,4 +59,5 @@ all_news = pd.DataFrame({"Time": [d["Time"] for d in news_data],
                           "NEW": [d["NEW"] for d in news_data], 
                           "SAME": [d["SAME"] for d in news_data], 
                           "EXCLUDED": [d["EXCLUDED"] for d in news_data]})
+                          
 
