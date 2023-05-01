@@ -10,8 +10,7 @@ today=date.today()
 now = datetime.now()
 current_time = now.strftime("%H_%M")
 name=f"https://github.com/Aytage/bloomberg_cron_news/tree/main/xml/sitemap_news_{today}__{current_time}.xml"
-print(name+"hello")
-#filename = wget.download(url, name)
+filename = wget.download(url)
 
 '''with open(filename, 'r',encoding='utf-8') as file:
     xml_content = file.read()
