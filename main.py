@@ -11,7 +11,7 @@ now = datetime.now()
 current_time = now.strftime("%H_%M")
 name=f"./xml/sitemap_news_{today}__{current_time}.xml"
 filename = wget.download(url,name)
-with open(f"./data/" "ab") as fp:
+with open(f"./data/") as fp:
         pickle.dump(filename, fp)
         fp.close()
 
