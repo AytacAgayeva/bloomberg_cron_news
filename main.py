@@ -60,5 +60,7 @@ all_news = pd.DataFrame({"Time": [d["Time"] for d in news_data],
                           "NEW": [d["NEW"] for d in news_data], 
                           "SAME": [d["SAME"] for d in news_data], 
                           "EXCLUDED": [d["EXCLUDED"] for d in news_data]})
+
+all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv)
                           
 
