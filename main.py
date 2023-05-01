@@ -12,7 +12,7 @@ current_time = now.strftime("%H_%M")
 name=f"https://github.com/Aytage/bloomberg_cron_news/tree/main/xml/sitemap_news_{today}__{current_time}.xml"
 filename = wget.download(url, name)
 
-with open(filename, 'r',encoding='utf-8') as file:
+'''with open(filename, 'r',encoding='utf-8') as file:
     xml_content = file.read()
     
 soup = BeautifulSoup(xml_content, 'xml')
@@ -58,6 +58,6 @@ for d, t in data:
 all_news = pd.DataFrame({"Time": [d["Time"] for d in news_data], 
                           "NEW": [d["NEW"] for d in news_data], 
                           "SAME": [d["SAME"] for d in news_data], 
-                          "EXCLUDED": [d["EXCLUDED"] for d in news_data]})
+                          "EXCLUDED": [d["EXCLUDED"] for d in news_data]})'''
                           
 
