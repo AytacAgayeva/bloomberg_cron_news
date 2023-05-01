@@ -9,9 +9,9 @@ url = 'https://www.bloomberg.com/feeds/sitemap_news.xml'
 today=date.today()
 now = datetime.now()
 current_time = now.strftime("%H_%M")
-name=f"./xml/sitemap_news_{today}__{current_time}.xml"
+name=f"sitemap_news_{today}__{current_time}.xml"
 filename = wget.download(url,name)
-with open(f"./data/") as fp:
+with open(f"https://github.com/Aytage/bloomberg_cron_news/tree/main/data/") as fp:
         pickle.dump(filename, fp)
         fp.close()
 
