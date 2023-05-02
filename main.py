@@ -61,7 +61,22 @@ all_news = pd.DataFrame({"Time": [d["Time"] for d in news_data],
                           "SAME": [d["SAME"] for d in news_data], 
                           "EXCLUDED": [d["EXCLUDED"] for d in news_data]})
 
-all_news.tail.to_csv(f'./data/sitemap_news_{today}__{current_time}.csv')
-news_count.tail.to_csv(f'./data/news_count_{today}__{current_time}.csv')
+
+path = "./all_news"
+files = [f for f in os.listdir(path) if f.endswith(".csv")]
+files.sort()
+
+# if there are files, read the most recent one
+if len(files) > 0:
+    file_path = os.path.join(path, files[0])
+    data_all = pd.read_csv(file_path)
+    data_all=pd.concat([data_all,all_news.tail(1)],axis=0)
+    data_all.to_csv(file_path, index=False)
+    all_news.tail(1).to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
+else:
+    all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
+    
+#all_news.tail.to_csv(f'./data/sitemap_news_{today}__{current_time}.csv')
+#news_count.tail.to_csv(f'./data/news_count_{today}__{current_time}.csv')
                           
 
