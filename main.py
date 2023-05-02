@@ -72,7 +72,7 @@ if len(files_news) > 0:
     data_all = pd.read_csv(file_path)
     data_all=pd.concat([data_all,all_news],axis=0)
     data_all.to_csv(file_path,index=False)
-    
+ else:
     
 path_count = "./news_count"
 
