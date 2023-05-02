@@ -62,5 +62,6 @@ all_news = pd.DataFrame({"Time": [d["Time"] for d in news_data],
                           "EXCLUDED": [d["EXCLUDED"] for d in news_data]})
 
 all_news.to_csv(f'./data/sitemap_news_{today}__{current_time}.csv')
+news_count.to_csv(f'./data/news_count_{today}__{current_time}.csv')
                           
 
