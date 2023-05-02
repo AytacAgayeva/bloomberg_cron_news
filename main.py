@@ -57,35 +57,27 @@ if len(last_2_files)==2:
                           "EXCLUDED": [len(dif_old)]})
     all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv',index=False)
     news_count.to_csv(f'./news_count/sitemap_news_{today}__{current_time}.csv',index=False)
-else:
-    data_old=pd.read_json(f'./json/{last_2_files[0]}')
-    news_count = pd.DataFrame({"Time": [last_2_files[0][-10:-5]], "Count": [data_old.shape[0]]})
     
-path_news = "./all_news"
-
-files_news = [f for f in os.listdir(path_news) if f.endswith(".csv")]
-files_news.sort()
-
-# if there are files, read the most recent one
-if len(files_news) > 0:
-    file_path = os.path.join(path_news, files_news[0])
+    files_news = [f for f in os.listdir("./all_news") if f.endswith(".csv")]
+    files_news.sort()
+    file_path = os.path.join("./all_news", files_news[0])
     data_all = pd.read_csv(file_path)
     data_all=pd.concat([data_all,all_news],axis=0)
     data_all.to_csv(file_path,index=False)
-else:
-    pass
     
-path_count = "./news_count"
-
-count_news = [f for f in os.listdir(path_count) if f.endswith(".csv")]
-count_news.sort()
-
-# if there are files, read the most recent one
-if len(count_news) > 0:
+    count_news = [f for f in os.listdir("./news_count") if f.endswith(".csv")]
+    count_news.sort()
     count_path = os.path.join(path_count, count_news[0])
     count_all = pd.read_csv(count_path)
     count_all=pd.concat([count_all,news_count],axis=0)
     count_all.to_csv(count_path,index=False)
+    
 else:
-    news_count.to_csv(f'./news_count/sitemap_news_{today}__{current_time}.csv',index=False)
-
+    data_old=pd.read_json(f'./json/{last_2_files[0]}')
+    news_count = pd.DataFrame({"Time": [last_2_files[0][-10:-5]], "Count": [data_old.shape[0]]})
+    all_news_ = pd.DataFrame({"Time": [f'{last_2_files[0][-10:-5]}'], 
+                          "NEW": [data_old.shape[0]], 
+                          "SAME": [0], 
+                          "EXCLUDED": [0]})
+    all_news_.to_csv(f'./all_news/all_time_news.csv',index=False)
+    news_count.to_csv(f'./news_count/all_time_news_count.csv',index=False)
