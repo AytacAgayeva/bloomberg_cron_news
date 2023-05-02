@@ -69,10 +69,10 @@ if len(files_news) > 0:
     file_path = os.path.join(path_news, files_news[0])
     data_all = pd.read_csv(file_path)
     data_all=pd.concat([data_all,all_news],axis=0)
-    data_all.to_csv(file_path)
-    all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
+    data_all.to_csv(file_path,index=False)
+    all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv',index=False)
 else:
-    all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
+    all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv',index=False)
     
     
 path_count = "./news_count"
@@ -85,8 +85,8 @@ if len(count_news) > 0:
     count_path = os.path.join(path_count, count_news[0])
     count_all = pd.read_csv(count_path)
     count_all=pd.concat([count_all,news_count],axis=0)
-    count_all.to_csv(count_path)
-    news_count.to_csv(f'./news_count/sitemap_news_{today}__{current_time}.csv')
+    count_all.to_csv(count_path,index=False)
+    news_count.to_csv(f'./news_count/sitemap_news_{today}__{current_time}.csv',index=False)
 else:
-    news_count.to_csv(f'./news_count/sitemap_news_{today}__{current_time}.csv')
+    news_count.to_csv(f'./news_count/sitemap_news_{today}__{current_time}.csv',index=False)
 
