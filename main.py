@@ -73,4 +73,20 @@ if len(files_news) > 0:
     all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
 else:
     all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
+    
+    
+path_count = "./news_count"
+
+count_news = [f for f in os.listdir(path_count) if f.endswith(".csv")]
+count_news.sort()
+
+# if there are files, read the most recent one
+if len(count_news) > 0:
+    count_path = os.path.join(path_count, count_news[0])
+    count_all = pd.read_csv(count_path)
+    count_all=pd.concat([count_all,news_count],axis=0)
+    count_all.to_csv(count_path)
+    news_count.to_csv(f'./news_count/sitemap_news_{today}__{current_time}.csv')
+else:
+    news_count.to_csv(f'./news_count/sitemap_news_{today}__{current_time}.csv')
 
