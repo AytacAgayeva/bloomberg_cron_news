@@ -74,7 +74,7 @@ if len(files) > 0:
     data_all.to_csv(file_path, index=False)
     all_news.tail(1).to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
 else:
-    all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
+    all_news.tail(1).to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
     
 #all_news.tail.to_csv(f'./data/sitemap_news_{today}__{current_time}.csv')
 #news_count.tail.to_csv(f'./data/news_count_{today}__{current_time}.csv')
