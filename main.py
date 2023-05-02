@@ -57,7 +57,7 @@ if len(last_2_files)==2:
                           "EXCLUDED": [len(dif_old)]})
     
 else:
-    data_old=pd.read_json(f'./json_folder/{last_2_files[0]}')
+    data_old=pd.read_json(f'./json/{last_2_files[0]}')
     news_count = pd.DataFrame({"Time": [last_2_files[0][-10:-5]], "Count": [data_old.shape[0]]})
     
 path_news = "./all_news"
