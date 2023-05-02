@@ -70,6 +70,7 @@ files.sort()
 if len(files) > 0:
     file_path = os.path.join(path, files[0])
     data_all = pd.read_csv(file_path)
+    data_all.drop('Unnamed:0',axis=1,inplace=True)
     data_all=pd.concat([data_all,all_news.tail(1)],axis=0)
     data_all.to_csv(file_path, index=False)
     all_news.tail(1).to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv',index=False)
