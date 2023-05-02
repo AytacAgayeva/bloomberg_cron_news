@@ -67,7 +67,7 @@ if len(last_2_files)==2:
     
     count_news = [f for f in os.listdir("./news_count") if f.endswith(".csv")]
     count_news.sort()
-    count_path = os.path.join(path_count, count_news[0])
+    count_path = os.path.join("./news_count", count_news[0])
     count_all = pd.read_csv(count_path)
     count_all=pd.concat([count_all,news_count],axis=0)
     count_all.to_csv(count_path,index=False)
