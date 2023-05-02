@@ -39,45 +39,38 @@ df = pd.DataFrame(data)
 path="./json"
 df.to_json(os.path.join(path,f'sitemap_news_{today}__{current_time}.json'))
 
-data = [(pd.read_json(os.path.join(path, f)), f[-10:-5]) for f in os.listdir(path) if f.endswith(".json")]
-news_count = pd.DataFrame({"Time": [time for _, time in data], "Count": [datas.shape[0] for datas, _ in data]})
-old_data = None
-old_time = None
-old_file_name = None
-news_data = []
-for d, t in data:
-    if old_data is not None:
-        old = set(old_data['Title'])
-        new = set(d['Title'])
-        dif_old = old.difference(new)
-        dif_new = new.difference(old)
-        inter = old.intersection(new)
-        news_time = old_time + ' - ' + t
-        news_data.append({'Time': news_time, 'NEW': len(dif_new), 'SAME': len(inter), 'EXCLUDED': len(dif_old)})
-    old_data = d
-    old_time = t
-all_news = pd.DataFrame({"Time": [d["Time"] for d in news_data], 
-                          "NEW": [d["NEW"] for d in news_data], 
-                          "SAME": [d["SAME"] for d in news_data], 
-                          "EXCLUDED": [d["EXCLUDED"] for d in news_data]})
-
-
-path = "./all_news"
-files = [f for f in os.listdir(path) if f.endswith(".csv")]
+files = [f for f in os.listdir(path) if f.endswith(".json")]
 files.sort()
+last_2_files=files[-2:]
+if len(last_2_files)==2:
+    data_new=pd.read_json(f'./json_folder/{last_2_files[1]}')
+    data_old=pd.read_json(f'./json_folder/{last_2_files[0]}')
+    news_count = pd.DataFrame({"Time": [last_2_files[1][-10:-5]], "Count": [data_new.shape[0]]})
+    old = set(data_old['Title'])
+    new = set(data_new['Title'])
+    dif_old = old.difference(new)
+    dif_new = new.difference(old)
+    inter = old.intersection(new)
+    all_news = pd.DataFrame({"Time": [f'{last_2_files[0][-10:-5]} - {last_2_files[1][-10:-5]}'], 
+                          "NEW": [len(dif_new)], 
+                          "SAME": [len(inter)], 
+                          "EXCLUDED": [len(dif_old)]})
+    
+else:
+    news_count = pd.DataFrame({"Time": [last_2_files[0][-10:-5]], "Count": [data_old.shape[0]]})
+    
+path_news = "./all_news"
+
+files_news = [f for f in os.listdir(path_news) if f.endswith(".csv")]
+files_news.sort()
 
 # if there are files, read the most recent one
-if len(files) > 0:
-    file_path = os.path.join(path, files[0])
+if len(files_news) > 0:
+    file_path = os.path.join(path_news, files_news[0])
     data_all = pd.read_csv(file_path)
-    data_all.drop('Unnamed:0',axis=1,inplace=True)
-    data_all=pd.concat([data_all,all_news.tail(1)],axis=0)
-    data_all.to_csv(file_path, index=False)
-    all_news.tail(1).to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv',index=False)
+    data_all=pd.concat([data_all,all_news],axis=0)
+    data_all.to_csv(file_path)
+    all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
 else:
-    all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv',index=False)
-    
-#all_news.tail.to_csv(f'./data/sitemap_news_{today}__{current_time}.csv')
-#news_count.tail.to_csv(f'./data/news_count_{today}__{current_time}.csv')
-                          
+    all_news.to_csv(f'./all_news/sitemap_news_{today}__{current_time}.csv')
 
