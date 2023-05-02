@@ -43,8 +43,8 @@ files = [f for f in os.listdir(path) if f.endswith(".json")]
 files.sort()
 last_2_files=files[-2:]
 if len(last_2_files)==2:
-    data_new=pd.read_json(f'./json_folder/{last_2_files[1]}')
-    data_old=pd.read_json(f'./json_folder/{last_2_files[0]}')
+    data_new=pd.read_json(f'./json/{last_2_files[1]}')
+    data_old=pd.read_json(f'./json/{last_2_files[0]}')
     news_count = pd.DataFrame({"Time": [last_2_files[1][-10:-5]], "Count": [data_new.shape[0]]})
     old = set(data_old['Title'])
     new = set(data_new['Title'])
