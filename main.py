@@ -36,13 +36,7 @@ for url in urls:
         keywords=url.find("news:stock_tickers").text
     except AttributeError:
         pass
-    #title = url.find("news:title").text
-    #publication_date = url.find("news:publication_date").text[:10]
-    #publication_time = url.find("news:publication_date").text[11:19]
-    #image_loc_tag = url.find("image:loc")
-    #if image_loc_tag is not None:
-        #image_loc = image_loc_tag.text
-        
+    
     row_data = {
         "URL": loc,
         "Title": title,
