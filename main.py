@@ -32,15 +32,15 @@ for url in urls:
         language=url.find("news:language").text
         publication_date = url.find("news:publication_date").text[:10]
         publication_time = url.find("news:publication_date").text[11:19]
-        image_loc = url.find("image:loc").text
         keywords=url.find("news:stock_tickers").text
+        image_loc = url.find("image:loc").text
     except AttributeError:
         pass
     
     row_data = {
         "URL": loc,
         "Title": title,
-        "Language":language
+        "Language":language,
         "Publication Date": publication_date,
         "Publication Time": publication_time,
         "Keywords":keywords,
