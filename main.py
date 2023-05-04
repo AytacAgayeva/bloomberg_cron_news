@@ -21,17 +21,35 @@ urls = soup.find_all("url")
 data = []
 for url in urls:
     loc = url.loc.text
-    title = url.find("news:title").text
-    publication_date = url.find("news:publication_date").text[:10]
-    publication_time = url.find("news:publication_date").text[11:19]
-    image_loc_tag = url.find("image:loc")
-    if image_loc_tag is not None:
-        image_loc = image_loc_tag.text
+    title = ""
+    language = ""
+    publication_date = ""
+    publication_time = ""
+    keywords = ""
+    image_loc = ""
+    try:
+        title = url.find("news:title").text
+        language=url.find("news:language").text
+        publication_date = url.find("news:publication_date").text[:10]
+        publication_time = url.find("news:publication_date").text[11:19]
+        image_loc = url.find("image:loc").text
+        keywords=url.find("news:stock_tickers").text
+    except AttributeError:
+        pass
+    #title = url.find("news:title").text
+    #publication_date = url.find("news:publication_date").text[:10]
+    #publication_time = url.find("news:publication_date").text[11:19]
+    #image_loc_tag = url.find("image:loc")
+    #if image_loc_tag is not None:
+        #image_loc = image_loc_tag.text
+        
     row_data = {
         "URL": loc,
         "Title": title,
+        "Language":language
         "Publication Date": publication_date,
         "Publication Time": publication_time,
+        "Keywords":keywords,
         "Image URL": image_loc,
         }
     data.append(row_data)    
